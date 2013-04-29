@@ -1,12 +1,11 @@
 ;(function() {
   var root = this;
-  var string = {};
-  var Page = function() {
-    this.registry = {};
+  var capitalize = function(word) {
+    return word.charAt(0).toUpperCase()+word.slice(1);
   };
 
-  string.capitalize = function(word) {
-    return word.charAt(0).toUpperCase()+word.slice(1);
+  var Page = function() {
+    this.registry = {};
   };
 
   Page.prototype.recognize = function(options) {
@@ -15,7 +14,7 @@
         action = parts[1],
         registered = this.registry[options.page];
 
-    this.callAction(string.capitalize(prefix) + "Page", action);
+    this.callAction(capitalize(prefix) + "Page", action);
     if(registered) {
       for (var i = 0; i < registered.length; i++) {
         this.callAction(registered[i], action);
